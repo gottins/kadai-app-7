@@ -23,7 +23,17 @@
         </form>
     </div>
 </body>
-<script src="{{ asset('/js/app.js') }}"></script>
+<script src="{{ asset('/js/app.js') }}">
+    if (inputPost.value == "") {
+                message.push("投稿内容が未入力です。");
+            } else if (inputPost.value.length > 140) {
+                message.push("入力可能文字数は140文字以内です。")
+            }
+            if (message.length > 0) {
+                alert(message);
+                return;
+            }
+</script>
 <style scoped>
     .post-page .form {
         display: flex;
