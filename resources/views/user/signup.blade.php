@@ -45,7 +45,7 @@
 </body>
 <script src="{{ asset('/js/app.js') }}">
      if (inputName.value == "") {
-                message.push("名前が未入力です。");
+                message.push("名前が未入mkio力です。");
             }
 
             if (inputEmail.value == "") {
