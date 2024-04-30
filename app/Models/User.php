@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Follow;
 use App\Models\Post;
+use App\Models\Blocks;
 
 class User extends Model
 {
