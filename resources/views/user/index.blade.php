@@ -38,6 +38,20 @@
                             </form>
                         </div>
                         @endif
+
+                        <div class="block-info">
+                            <form name="block" action="/block/{{ $user->id }}" method="post">
+                                @csrf @method('PUT') @if ($isblocked)
+                                <input type="hidden" name="isblock" value="0" />
+                                <button class="button-white" onClick="unblock()">
+                                        ブロック済み
+                                    </button> @else
+                                <input type="hidden" name="isblock" value="1" />
+                                <button class="button-black">
+                                        ブロック
+                                    </button> @endif
+                            </form>
+                        </div>
                     </div>
                     <div class="user-name">{{ $user->name }}</div>
                 </div>

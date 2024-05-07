@@ -36,6 +36,19 @@ class User extends Model
         return $result;
     }
 
+     /**
+     * ユーザーがブロックしているユーザーのリストを取得する
+     */
+    public function blockUsers()
+    {
+        $blockUsers = blocks::where('user', $this->id)->get();
+        $result = [];
+        foreach ($blockUsers as $blockUser) {
+            array_push($result, $blockUser->blockUser());
+        }
+        return $result;
+    }
+
     /**
      * ユーザーをフォローしているユーザーのリストを取得する
      */
@@ -61,6 +74,31 @@ class User extends Model
         }
 
         return false;
+    }
+
+     /**
+     * $idのユーザーがこのユーザーをブロックしているか判定する
+     */
+    public function isblocked($id)
+    {
+        foreach ($this->blockUsers() as $blockUser) {
+            if ($blockUser->id == $id) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+     /**
+     * $idのユーザーをブロックする
+     */
+    public function block($id)
+    {
+        $block = new block;
+        $block->user = $this->id;
+        $block->block_user = $id;
+        $block->save();
     }
 
     /**
