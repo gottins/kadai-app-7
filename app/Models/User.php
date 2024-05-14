@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Follow;
 use App\Models\Post;
-use App\Models\Blocks;
+use App\Models\Block;
 
 class User extends Model
 {
@@ -41,7 +41,7 @@ class User extends Model
      */
     public function blockUsers()
     {
-        $blockUsers = blocks::where('user', $this->id)->get();
+        $blockUsers = Block::where('user', $this->id)->get();
         $result = [];
         foreach ($blockUsers as $blockUser) {
             array_push($result, $blockUser->blockUser());
@@ -49,7 +49,7 @@ class User extends Model
         return $result;
     }
 
-    /**
+  /**
      * ユーザーをフォローしているユーザーのリストを取得する
      */
     public function followerUsers()
@@ -60,7 +60,7 @@ class User extends Model
             array_push($result, $followUser->followerUser());
         }
         return $result;
-    }
+    }  
 
     /**
      * $idのユーザーがこのユーザーをフォローしているか判定する
@@ -95,7 +95,7 @@ class User extends Model
      */
     public function block($id)
     {
-        $block = new block;
+        $block = new Block;
         $block->user = $this->id;
         $block->block_user = $id;
         $block->save();
@@ -119,6 +119,17 @@ class User extends Model
     {
         Follow::where('user', $this->id)
             ->where('follow_user', $id)
+            ->first()
+            ->delete();
+    }
+
+     /**
+     * $idのユーザーをフォロー解除する
+     */
+    public function unblock($id)
+    {
+        Block::where('user', $this->id)
+            ->where('block_user', $id)
             ->first()
             ->delete();
     }
