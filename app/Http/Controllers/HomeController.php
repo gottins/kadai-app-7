@@ -29,7 +29,8 @@ class HomeController extends Controller
         array_push($users, $loginUser);
         // 各ユーザーの投稿を取得
         $posts = [];
-        if(count($posts) != 0) {
+
+        if(count($users) != 0) {
             foreach ($users as $user) {
                 foreach ($user->posts() as $post) {
                     array_push($posts, array('user' => $user, 'post' => $post));
@@ -38,6 +39,7 @@ class HomeController extends Controller
     
             // 投稿を時系列順に並べ替え
             $posts = $this->sort($posts);
+
         }
 
 

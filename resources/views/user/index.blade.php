@@ -42,11 +42,11 @@
                         <div class="block-info">
                             <form name="block" action="/block/{{ $user->id }}" method="post">
                                 @csrf @method('PUT') @if ($isblocked)
-                                <input type="hidden" name="isblock" value="0" />
+                                <input type="hidden" name="isblock" value="0" id="block-button"/>
                                 <button class="button-white" onClick="unblock()">
                                         ブロック済み
                                     </button> @else
-                                <input type="hidden" name="isblock" value="1" />
+                                <input type="hidden" name="isblock" value="1" id="block-button" />
                                 <button class="button-black">
                                         ブロック
                                     </button> @endif
@@ -71,7 +71,7 @@
                     </a>
                 </div>
             </div>
-            <div class="post-list">
+            <div class="post-list" id="post-list">
                 <div class="title">投稿一覧</div>
                 @foreach ($posts as $post)
                 <a href="/post/detail/{{ $post->id }}">
@@ -96,17 +96,26 @@
 </body>
 <script src="{{ asset('/js/app.js') }}"></script>
 <script>
+    //ブロック済みか判定
+    const isBlocked = document.getElementById("block-button").value == 0
+
+    if (isBlocked) {
+        const postList = document.getElementById("post-list")
+        postList.style.display = "none"
+    }
+
     function unfollow() {
         if (confirm("フォローを解除しますか?")) {
             document.follow.submit();
         }
     }
+
 </script>
 <style scoped>
     .user-page .page-container {
         padding: 0 10px;
     }
-    
+
     .user-page .user-info .user-icon {
         width: 60px;
         height: 60px;

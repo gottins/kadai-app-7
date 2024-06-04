@@ -81,4 +81,5 @@ class Block extends Model
             ->first()
             ->delete();
     }
+
 }
