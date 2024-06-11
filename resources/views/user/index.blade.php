@@ -90,6 +90,10 @@
                 </a>
                 @endforeach
             </div>
+            <div class="display-button-container">
+                <p>ブロックしているユーザーのポストは表示されません</p>
+                <input type="button" name="ispost" id="display-button" value="表示する"/>
+            </div>
         </div>
     </div>
     <x-footer></x-footer>
@@ -101,6 +105,10 @@
 
     if (isBlocked) {
         const postList = document.getElementById("post-list")
+        postList.style.display = "none"
+    }
+    else() {
+        const postList = document.getElementById("display-button-container")
         postList.style.display = "none"
     }
 
@@ -183,6 +191,23 @@
     .user-page .time-stamp {
         font-size: 8px;
         text-align: end;
+    }
+
+    .post-button{
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 7px;
+    }
+
+    .display-button-container {
+        display:flex;
+        flex-direction: column;
+        font-size: 12px;
+        justify-content: center;
+        align-items: center;
+        height: 180px;
     }
 </style>
 
