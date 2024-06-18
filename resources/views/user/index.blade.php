@@ -29,32 +29,32 @@
                                 @csrf @method('PUT') @if ($isFollowed)
                                 <input type="hidden" name="isFollow" value="0" />
                                 <button class="button-white" onClick="unfollow()">
-                                        フォロー済み
-                                    </button> @else
+                                    フォロー済み
+                                </button> @else
                                 <input type="hidden" name="isFollow" value="1" />
                                 <button class="button-black">
-                                        フォロー
-                                    </button> @endif
+                                    フォロー
+                                </button> @endif
                             </form>
                         </div>
-                        @endif
 
                         <div class="block-info">
                             <form name="block" action="/block/{{ $user->id }}" method="post">
                                 @csrf @method('PUT') @if ($isblocked)
-                                <input type="hidden" name="isblock" value="0" id="block-button"/>
+                                <input type="hidden" name="isblock" value="0" id="block-button" />
                                 <button class="button-white" onClick="unblock()">
-                                        ブロック済み
-                                    </button> @else
+                                    ブロック済み
+                                </button> @else
                                 <input type="hidden" name="isblock" value="1" id="block-button" />
                                 <button class="button-black">
-                                        ブロック
-                                    </button> @endif
+                                    ブロック
+                                </button> @endif
                             </form>
                         </div>
                     </div>
-                    <div class="user-name">{{ $user->name }}</div>
+                    @endif
                 </div>
+                <div class="user-name">{{ $user->name }}</div>
                 <div class="biography">
                     {{ $user->biography }}
                 </div>
@@ -90,9 +90,10 @@
                 </a>
                 @endforeach
             </div>
-            <div class="display-button-container">
+
+            <div id="display-button-container">
                 <p>ブロックしているユーザーのポストは表示されません</p>
-                <input type="button" name="ispost" id="display-button" value="表示する"/>
+                <input type="button" name="ispost" id="display-button" value="表示する" />
             </div>
         </div>
     </div>
@@ -101,22 +102,25 @@
 <script src="{{ asset('/js/app.js') }}"></script>
 <script>
     //ブロック済みか判定
-    const isBlocked = document.getElementById("block-button").value == 0
+    const blockButton = !document.getElementById("block-button")
 
-    if (isBlocked) {
-        const postList = document.getElementById("post-list")
-        postList.style.display = "none"
-    }
-    else() {
-        const postList = document.getElementById("display-button-container")
-        postList.style.display = "none"
+    if (blockButton) {
+        const isBlocked = blockButton.value == 0
+        if (isBlocked) {
+            document.getElementById("post-list").style.display = "none"
+        }
+        else {
+            document.getElementById("display-button-container").style.display = "none"
+        }
     }
 
     function unfollow() {
         if (confirm("フォローを解除しますか?")) {
             document.follow.submit();
         }
+
     }
+
 
 </script>
 <style scoped>
@@ -128,72 +132,72 @@
         width: 60px;
         height: 60px;
     }
-    
+
     .user-page .user-info {
         margin-bottom: 10px;
     }
-    
+
     .user-page .user-row {
         display: flex;
         justify-content: space-between;
         line-height: 60px;
     }
-    
+
     .user-page .user-info .user-name {
         font-size: 20px;
         font-weight: bold;
     }
-    
+
     .user-page .biography {
         font-size: 14px;
         padding: 8px 0;
     }
-    
+
     .user-page .follow-info {
         display: flex;
         font-size: 14px;
     }
-    
+
     .user-page .follow-info .follow {
         margin-right: 5px;
     }
-    
+
     .user-page .title {
         font-size: 18px;
         font-weight: bold;
         color: gray;
         margin-bottom: 6px;
     }
-    
+
     .user-page .post {
         display: flex;
         padding: 0 10px;
     }
-    
+
     .user-page .post .container {
         width: 90%;
     }
-    
+
     .user-page .post-list .user-icon {
         width: 40px;
         height: 40px;
     }
-    
+
     .user-page .user-name {
         line-height: 40px;
     }
-    
+
     .user-page .content {
         font-size: 14px;
         word-wrap: break-word;
     }
-    
+
     .user-page .time-stamp {
         font-size: 8px;
         text-align: end;
     }
 
-    .post-button{
+    .post-button {
         width: 40px;
         height: 40px;
         font-size: 18px;
@@ -202,7 +206,7 @@
     }
 
     .display-button-container {
-        display:flex;
+        display: flex;
         flex-direction: column;
         font-size: 12px;
         justify-content: center;
