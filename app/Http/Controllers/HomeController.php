@@ -30,18 +30,16 @@ class HomeController extends Controller
         // 各ユーザーの投稿を取得
         $posts = [];
 
-        if(count($users) != 0) {
-            foreach ($users as $user) {
-                foreach ($user->posts() as $post) {
-                    array_push($posts, array('user' => $user, 'post' => $post));
-                }
+
+        foreach ($users as $user) {
+            foreach ($user->posts() as $post) {
+                array_push($posts, array('user' => $user, 'post' => $post));
             }
-    
+        }
+        if (count($posts) != 0) {
             // 投稿を時系列順に並べ替え
             $posts = $this->sort($posts);
-
         }
-
 
         // 画面表示
         return view('home', compact('posts'));
