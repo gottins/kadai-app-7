@@ -42,7 +42,7 @@
                             <form name="block" action="/block/{{ $user->id }}" method="post">
                                 @csrf @method('PUT') @if ($isblocked)
                                 <input type="hidden" name="isblock" value="0" id="block-button" />
-                                <button class="button-white" onClick="unblock()">
+                                <button class="button-white">
                                     ブロック済み
                                 </button> @else
                                 <input type="hidden" name="isblock" value="1" id="block-button" />
@@ -93,7 +93,7 @@
 
             <div id="display-button-container">
                 <p>ブロックしているユーザーのポストは表示されません</p>
-                <input type="button" name="ispost" id="display-button" value="表示する" />
+                <input type="button" name="ispost" id="display-button" value="表示する" onclick="display()" />
             </div>
         </div>
     </div>
@@ -102,7 +102,7 @@
 <script src="{{ asset('/js/app.js') }}"></script>
 <script>
     //ブロック済みか判定
-    const blockButton = !document.getElementById("block-button")
+    const blockButton = document.getElementById("block-button")
 
     if (blockButton) {
         const isBlocked = blockButton.value == 0
@@ -118,7 +118,11 @@
         if (confirm("フォローを解除しますか?")) {
             document.follow.submit();
         }
+    }
 
+    function display() {
+        document.getElementById("post-list").style.display = ""
+        document.getElementById("display-button-container").style.display = "none"
     }
 
 
