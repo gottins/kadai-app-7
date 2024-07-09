@@ -65,6 +65,8 @@ class PostController extends Controller
         // 指定したIDの投稿情報を取得する
         $post = Post::find($id);
 
+        $replys = $post->replys();
+
         // 投稿が存在するか判定
         if ($post == null) {
             return dd('存在しない投稿です');
@@ -84,7 +86,7 @@ class PostController extends Controller
         }
 
         // 画面表示
-        return view('post.detail', compact('post', 'user', 'isOwnPost'));
+        return view('post.detail', compact('post', 'user', 'isOwnPost','replys'));
     }
 
     /**

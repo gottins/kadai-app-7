@@ -38,6 +38,7 @@ class PostSeeder extends Seeder
         Post::create([
             'user' => '2',
             'content' => '私のソフトウェアにはバグが無い。その場に応じてランダムな仕様が生み出されるだけだ。',
+            'reply_to' => '2',
             'created_at' => new DateTime('2020-11-05 00:00:00'),
         ]);
         Post::create([

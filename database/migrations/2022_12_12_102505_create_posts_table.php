@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user');
             $table->string('content',140);
+            $table->unsignedBigInteger('reply_to')->default(0);
             $table->boolean('is_deleted')->default(0);
             $table->timestamps();
         });
