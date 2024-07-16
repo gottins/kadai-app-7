@@ -17,6 +17,7 @@ class PostSeeder extends Seeder
     {
         Post::create([
             'user' => '2',
+            'repry_to'=> '1',
             'content' => '完璧を目指すよりもとにかくやってしまうことだ',
             'created_at' => new DateTime('2020-11-01 00:00:00'),
         ]);

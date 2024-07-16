@@ -124,7 +124,7 @@ class User extends Model
     }
 
      /**
-     * $idのユーザーをフォロー解除する
+     * $idのユーザーをブロック解除する
      */
     public function unblock($id)
     {
