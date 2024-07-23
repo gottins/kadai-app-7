@@ -17,12 +17,12 @@ class PostSeeder extends Seeder
     {
         Post::create([
             'user' => '2',
-            'repry_to'=> '1',
             'content' => '完璧を目指すよりもとにかくやってしまうことだ',
             'created_at' => new DateTime('2020-11-01 00:00:00'),
         ]);
         Post::create([
             'user' => '2',
+            'reply_to'=> '3',
             'content' => '「ジョーのデバッグの法則」というのがあります。それは、すべてのバグは最後にプログラムを修正した個所からプラスマイナス3ステートメント以内にある、というものです',
             'created_at' => new DateTime('2020-11-02 00:00:00'),
         ]);
