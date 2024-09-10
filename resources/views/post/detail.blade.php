@@ -23,6 +23,10 @@
                 <div class="content">{{ $post->content }}</div>
                 <div class="time-stamp">{{ $post->created_at }}</div>
             </a>
+            <div class="replys">
+                <img class="user-icon" src="{{ asset('/img/user_icon.png') }}" alt="" />
+                <div class="user-name">{{ $user->name }}</div>
+            </div>
             @if ($isOwnPost)
             <div class="menu">
                 <div class="menu-item font-blue">
