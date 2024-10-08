@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('reply_to')->default(0);
             $table->boolean('is_deleted')->default(0);
             $table->timestamps();
+            $table->unsignedBigInteger('parent_id')->default(0);
         });
     }
 
