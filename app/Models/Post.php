@@ -18,6 +18,13 @@ class Post extends Model
         return User::find($this->user);
     }
 
+    public function parentpost()
+    {
+        return post::where('parent_id',$this->id)
+        ->where('is_deleted',false)
+        ->get();
+    }
+
     public function replys() 
     {
         return post::where('reply_to',$this->id)

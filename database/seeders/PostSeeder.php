@@ -17,6 +17,7 @@ class PostSeeder extends Seeder
     {
         Post::create([
             'user' => '2',
+            'parent_id' => '5',
             'content' => '完璧を目指すよりもとにかくやってしまうことだ',
             'created_at' => new DateTime('2020-11-01 00:00:00'),
         ]);
@@ -49,6 +50,7 @@ class PostSeeder extends Seeder
         ]);
         Post::create([
             'user' => '2',
+            'parent_id' =>'6',
             'content' => '新しいプログラミング言語を学ぶ唯一の方法は、その言語でプログラムを書くことです。',
             'created_at' => new DateTime('2020-11-07 00:00:00'),
         ]);

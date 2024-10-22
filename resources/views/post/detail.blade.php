@@ -61,6 +61,29 @@
         </div>
         @endforeach
     </div>
+    @foreach ($parentpost)
+    <div class="post">
+        <a href="/user/{{ $parentpost->id }}">
+            <img class="user-icon" src="{{ asset('/img/user_icon.png') }}" alt="" />
+        </a>
+        <div class="container">
+            <a href="/user/{{ $parentpostd->id }}">
+                <div class="user-name">
+                    {{ $parentpost->name }}
+                </div>
+            </a>
+            <a href="/post/detail/{{ $parentid->id }}">
+                <div class="content">
+                    {{ $pparentpost->content }}
+                </div>
+                <div class="time-stamp">
+                    {{ $parentpost->created_at }}
+                </div>
+            </a>
+        </div>
+    </div>
+    @endforeach
+    </div>
 </body>
 <x-footer></x-footer>
 <script src="{{ asset('/js/app.js') }}"></script>
