@@ -67,7 +67,7 @@ class PostController extends Controller
 
         $replys = $post->replys();
 
-        $parentpost = $post->parentpost();
+        $parentPost = $post->parentPost();
         
         // 投稿が存在するか判定
         if ($post == null) {
@@ -88,7 +88,7 @@ class PostController extends Controller
         }
 
         // 画面表示
-        return view('post.detail', compact('post', 'user', 'isOwnPost','replys','parentpost'));
+        return view('post.detail', compact('post', 'user', 'isOwnPost','replys','parentPost'));
     }
 
     /**

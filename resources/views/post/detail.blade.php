@@ -61,29 +61,28 @@
         </div>
         @endforeach
     </div>
-    @foreach ($parentpost)
+    @if($parentPost)
     <div class="post">
-        <a href="/user/{{ $parentpost->id }}">
+        <a href="/user/{{ $parentPost->id }}">
             <img class="user-icon" src="{{ asset('/img/user_icon.png') }}" alt="" />
         </a>
         <div class="container">
-            <a href="/user/{{ $parentpostd->id }}">
+            <a href="/user/{{ $parentPost->id }}">
                 <div class="user-name">
-                    {{ $parentpost->name }}
+                    {{ $parentPost->name }}
                 </div>
             </a>
-            <a href="/post/detail/{{ $parentid->id }}">
+            <a href="/post/detail/{{ $parentPost->id }}">
                 <div class="content">
-                    {{ $pparentpost->content }}
+                    {{ $parentPost->content }}
                 </div>
                 <div class="time-stamp">
-                    {{ $parentpost->created_at }}
+                    {{ $parentPost->created_at }}
                 </div>
             </a>
         </div>
     </div>
-    @endforeach
-    </div>
+    @endif
 </body>
 <x-footer></x-footer>
 <script src="{{ asset('/js/app.js') }}"></script>
