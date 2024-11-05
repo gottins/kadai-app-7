@@ -69,6 +69,7 @@ class PostController extends Controller
 
         $parentPost = $post->parentPost();
         
+        dd($parentPost);
         // 投稿が存在するか判定
         if ($post == null) {
             return dd('存在しない投稿です');

@@ -20,8 +20,9 @@ class Post extends Model
 
     public function parentPost()
     {
-        return post::find('parent_id',$this->id)
-        ->where('is_deleted',false); 
+        return post::where('parent_id',$this->post)
+        ->where('is_deleted',false)
+        ->get();
     }
 
     public function replys() 
