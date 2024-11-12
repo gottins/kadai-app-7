@@ -22,7 +22,7 @@ class Post extends Model
     {
         return post::where('parent_id',$this->post)
         ->where('is_deleted',false)
-        ->get();
+        ->first();
     }
 
     public function replys() 
