@@ -38,6 +38,12 @@
             </div>
             @endif
         </div>
+
+        <div class="reply-from">
+            <textarea id="reply-content" placeholder="リプライを入力してください"></textarea>
+            <button id="submit-reply" date-post-id="{{ $post->id }}">リプライ送信</button>
+        </div>
+
         @foreach ($replys as $reply)
         <div class="post">
             <a href="/user/{{ $reply->id }}">
