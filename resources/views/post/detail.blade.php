@@ -14,6 +14,28 @@
 <body class="">
     <x-header></x-header>
     <div class="page post-detail-page">
+        @if($parentPost)
+        <div class="post">
+            <a href="/user/{{ $parentPost->id }}">
+                <img class="user-icon" src="{{ asset('/img/user_icon.png') }}" alt="" />
+            </a>
+            <div class="container">
+                <a href="/user/{{ $parentPost->id }}">
+                    <div class="user-name">
+                        {{ $parentPost->name }}
+                    </div>
+                </a>
+                <a href="/post/detail/{{ $parentPost->id }}">
+                    <div class="content">
+                        {{ $parentPost->content }}
+                    </div>
+                    <div class="time-stamp">
+                        {{ $parentPost->created_at }}
+                    </div>
+                </a>
+            </div>
+        </div>
+        @endif
         <div class="post">
             <a href="/user/{{ $user->id }}">
                 <div class="user-info">
@@ -67,28 +89,6 @@
         </div>
         @endforeach
     </div>
-    @if($parentPost)
-    <div class="post">
-        <a href="/user/{{ $parentPost->id }}">
-            <img class="user-icon" src="{{ asset('/img/user_icon.png') }}" alt="" />
-        </a>
-        <div class="container">
-            <a href="/user/{{ $parentPost->id }}">
-                <div class="user-name">
-                    {{ $parentPost->name }}
-                </div>
-            </a>
-            <a href="/post/detail/{{ $parentPost->id }}">
-                <div class="content">
-                    {{ $parentPost->content }}
-                </div>
-                <div class="time-stamp">
-                    {{ $parentPost->created_at }}
-                </div>
-            </a>
-        </div>
-    </div>
-    @endif
 </body>
 <x-footer></x-footer>
 <script src="{{ asset('/js/app.js') }}"></script>
