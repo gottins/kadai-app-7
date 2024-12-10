@@ -44,6 +44,7 @@
                 </div>
                 <div class="content">{{ $post->content }}</div>
                 <div class="time-stamp">{{ $post->created_at }}</div>
+
             </a>
 
             @if ($isOwnPost)
@@ -61,10 +62,18 @@
             @endif
         </div>
 
-        <div class="reply-from">
-            <textarea id="reply-content" placeholder="リプライを入力してください"></textarea>
-            <button id="submit-reply" date-post-id="{{ $post->id }}">リプライ送信</button>
-        </div>
+
+        <form class="post" action="/post" method="post">
+            @csrf
+            <textarea name="postContent" id="" cols="30" rows="5" placeholder="いまどうしてる?"></textarea>
+            <div class="post-button">
+                <button class="button-white" type="submit">リプライ</button>
+            </div>
+            <input type="hidden" name="replyTo" value="{{$post->replys}}" />
+            <input type="hidden" name="pearentid" value="{{$post->parent_id}}" />
+        </form>
+
+
 
         @foreach ($replys as $reply)
         <div class="post">

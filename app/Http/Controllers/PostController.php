@@ -73,7 +73,7 @@ class PostController extends Controller
         if ($post == null) {
             return dd('存在しない投稿です');
         }
-
+dd($replys);
         // 投稿者を取得
         $user = $post->user();
 
