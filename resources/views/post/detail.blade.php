@@ -69,10 +69,13 @@
             <div class="post-button">
                 <button class="button-white" type="submit">リプライ</button>
             </div>
-            <input type="hidden" name="replyTo" value="{{$post->replys}}" />
+            <input type="hidden" name="replyTo" value="{{$post->id}}" />
+            @if ($parentPost)
+            <input type="hidden" name="pearentid" value="{{$post->id}}" />
+            @else
             <input type="hidden" name="pearentid" value="{{$post->parent_id}}" />
+            @endif
         </form>
-
 
 
         @foreach ($replys as $reply)

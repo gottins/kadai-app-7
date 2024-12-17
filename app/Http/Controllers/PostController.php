@@ -48,15 +48,17 @@ class PostController extends Controller
 
         Validator::make($request->all(), $rules, $messages)->validate();
 
+
         // データ登録
         $post = new Post;
         $post->user = $loginUser->id;
         $post->content = $request->postContent;
+        $post->reply_to = $request->replyTo;
+        $post->parent_id = $request->pearentid;
         $post->save();
 
         return redirect('/');
     }
-
     /**
      * 投稿詳細画面遷移
      */
@@ -73,7 +75,7 @@ class PostController extends Controller
         if ($post == null) {
             return dd('存在しない投稿です');
         }
-dd($replys);
+
         // 投稿者を取得
         $user = $post->user();
 
@@ -86,11 +88,9 @@ dd($replys);
             // 自分自身の投稿ページか判定
             $isOwnPost = $loginUser->id == $user->id;
         }
-
         // 画面表示
         return view('post.detail', compact('post', 'user', 'isOwnPost','replys','parentPost'));
     }
-
     /**
      * 投稿編集画面
      */
